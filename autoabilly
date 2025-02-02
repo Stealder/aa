@@ -1,1 +1,14 @@
+while true do
+    task.wait()
+    pcall(function()
+        for i, v in next, game:GetService("Workspace")["_UNITS"]:GetChildren() do
+            if v:IsA("Model") and v._stats.player.Value == game.Players.LocalPlayer then
+                local args = {
+                    [1] = v
+                }
+                game:GetService("ReplicatedStorage").endpoints.client_to_server.use_active_attack:InvokeServer(unpack(args))
+            end
+        end
+    end)
+end
 
